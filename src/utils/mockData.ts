@@ -26,6 +26,8 @@ export const INITIAL_MOCK_CAMPAIGNS: NormalizedCampaign[] = [
       costPerResult: 67.62,
       unitLabel: 'Lead'
     },
+    pageName: 'Ceylon Luxury Properties',
+    pageId: '101928374',
     updatedAt: new Date().toISOString(),
     isMock: true
   },
@@ -56,6 +58,8 @@ export const INITIAL_MOCK_CAMPAIGNS: NormalizedCampaign[] = [
       roas: 7.24,
       unitLabel: 'Purchase'
     },
+    pageName: 'Apex Fashion Sri Lanka',
+    pageId: '202847561',
     updatedAt: new Date().toISOString(),
     isMock: true
   },
@@ -84,6 +88,8 @@ export const INITIAL_MOCK_CAMPAIGNS: NormalizedCampaign[] = [
       costPerResult: 46.66,
       unitLabel: 'Conv.'
     },
+    pageName: 'TechZone Store LK',
+    pageId: '303958672',
     updatedAt: new Date().toISOString(),
     isMock: true
   },
@@ -112,6 +118,8 @@ export const INITIAL_MOCK_CAMPAIGNS: NormalizedCampaign[] = [
       costPerResult: 2.37,
       unitLabel: 'Click'
     },
+    pageName: 'Ceylon Luxury Properties',
+    pageId: '101928374',
     updatedAt: new Date().toISOString(),
     isMock: true
   },
@@ -140,6 +148,8 @@ export const INITIAL_MOCK_CAMPAIGNS: NormalizedCampaign[] = [
       costPerResult: 99.76,
       unitLabel: '1k Reach'
     },
+    pageName: 'Apex Fashion Sri Lanka',
+    pageId: '202847561',
     updatedAt: new Date().toISOString(),
     isMock: true
   },
@@ -168,6 +178,8 @@ export const INITIAL_MOCK_CAMPAIGNS: NormalizedCampaign[] = [
       costPerResult: 126.53,
       unitLabel: 'Install'
     },
+    pageName: 'SmartApp Lanka',
+    pageId: '404859603',
     updatedAt: new Date().toISOString(),
     isMock: true
   }

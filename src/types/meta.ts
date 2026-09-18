@@ -77,6 +77,8 @@ export interface NormalizedCampaign {
   reach: number;
   frequency: number;
   primaryResult: PrimaryResult;
+  pageName?: string;
+  pageId?: string;
   updatedAt: string;
   isMock?: boolean;
 }

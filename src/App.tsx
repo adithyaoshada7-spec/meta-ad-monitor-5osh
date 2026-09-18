@@ -20,9 +20,12 @@ export function App() {
     settings,
     statusFilter,
     objectiveFilter,
+    pageFilter,
+    availablePages,
     searchQuery,
     setStatusFilter,
     setObjectiveFilter,
+    setPageFilter,
     setSearchQuery,
     updateSettings,
     refreshData
@@ -125,9 +128,12 @@ export function App() {
             campaigns={campaigns}
             searchQuery={searchQuery}
             objectiveFilter={objectiveFilter}
+            pageFilter={pageFilter}
+            availablePages={availablePages}
             currency={settings.currency}
             onSearchChange={setSearchQuery}
             onObjectiveFilterChange={setObjectiveFilter}
+            onPageFilterChange={setPageFilter}
           />
 
         </main>

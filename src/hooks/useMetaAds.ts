@@ -53,7 +53,17 @@ export function useMetaAds() {
   // Filters
   const [statusFilter, setStatusFilter] = useState<CampaignStatus>('ACTIVE'); // Default to Active Campaigns Only as requested!
   const [objectiveFilter, setObjectiveFilter] = useState<string>('ALL');
+  const [pageFilter, setPageFilter] = useState<string>('ALL');
   const [searchQuery, setSearchQuery] = useState<string>('');
+
+  // Extract unique Facebook Page names from current campaigns
+  const availablePages = useMemo(() => {
+    const set = new Set<string>();
+    campaigns.forEach(c => {
+      if (c.pageName) set.add(c.pageName);
+    });
+    return Array.from(set);
+  }, [campaigns]);
 
   // Save settings when updated
   const updateSettings = useCallback((newSettings: Partial<ApiSettings>) => {
@@ -113,17 +123,22 @@ export function useMetaAds() {
       if (objectiveFilter !== 'ALL' && cmp.objectiveCategory !== objectiveFilter) {
         return false;
       }
+      // Facebook Page filter
+      if (pageFilter !== 'ALL' && cmp.pageName !== pageFilter) {
+        return false;
+      }
       // Search filter
       if (searchQuery.trim() !== '') {
         const q = searchQuery.toLowerCase();
         const matchName = cmp.name.toLowerCase().includes(q);
         const matchId = cmp.id.toLowerCase().includes(q);
         const matchObj = cmp.objective.toLowerCase().includes(q);
-        if (!matchName && !matchId && !matchObj) return false;
+        const matchPage = (cmp.pageName || '').toLowerCase().includes(q);
+        if (!matchName && !matchId && !matchObj && !matchPage) return false;
       }
       return true;
     });
-  }, [campaigns, statusFilter, objectiveFilter, searchQuery]);
+  }, [campaigns, statusFilter, objectiveFilter, pageFilter, searchQuery]);
 
   // Dashboard summary metrics calculation
   const summary: DashboardSummary = useMemo(() => {
@@ -200,9 +215,12 @@ export function useMetaAds() {
     settings,
     statusFilter,
     objectiveFilter,
+    pageFilter,
+    availablePages,
     searchQuery,
     setStatusFilter,
     setObjectiveFilter,
+    setPageFilter,
     setSearchQuery,
     updateSettings,
     refreshData
