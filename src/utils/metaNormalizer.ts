@@ -219,7 +219,10 @@ export function extractPrimaryResult(
 /**
  * Normalizes raw Meta Campaign API payload into a unified, crash-safe UI representation
  */
-export function normalizeMetaCampaign(raw: RawMetaCampaign): NormalizedCampaign {
+export function normalizeMetaCampaign(
+  raw: RawMetaCampaign, 
+  pageMap: Record<string, string> = {}
+): NormalizedCampaign {
   const insight: MetaInsightData = raw.insights?.data?.[0] || {};
   
   const rawStatus = (raw.effective_status || raw.status || 'PAUSED').toUpperCase();
@@ -263,10 +266,19 @@ export function normalizeMetaCampaign(raw: RawMetaCampaign): NormalizedCampaign 
 
   const primaryResult = extractPrimaryResult(rawObjective, category, insight, amountSpent);
 
-  // Extract Page Name & ID if available from raw API payload or infer clean fallback
+  // Extract Page Name & ID if available from raw API payload or infer from pageMap
   const rawAny = raw as any;
-  const pageName = rawAny.promoted_object?.page_name || rawAny.page_name || rawAny.promoter_page_name || 'Main Facebook Page';
-  const pageId = rawAny.promoted_object?.page_id || rawAny.page_id || 'page_default';
+  const pageId = rawAny.promoted_object?.page_id || rawAny.adsets?.data?.[0]?.promoted_object?.page_id || rawAny.page_id || 'page_default';
+  
+  let pageName = rawAny.promoted_object?.page_name || rawAny.adsets?.data?.[0]?.promoted_object?.page_name || rawAny.page_name || rawAny.promoter_page_name;
+  
+  if (!pageName && pageId && pageMap[pageId]) {
+    pageName = pageMap[pageId];
+  }
+
+  if (!pageName) {
+    pageName = 'Main Facebook Page';
+  }
 
   return {
     id: raw.id || `cmp_${Math.random().toString(36).substr(2, 9)}`,

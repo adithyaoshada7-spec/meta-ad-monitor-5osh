@@ -18,6 +18,23 @@ export async function fetchMetaCampaigns(settings: ApiSettings): Promise<{
       ? settings.adAccountId.trim()
       : `act_${settings.adAccountId.trim()}`;
 
+    // Fetch account promote pages dictionary if possible for 100% accurate FB page names
+    const pageMap: Record<string, string> = {};
+    try {
+      const pagesUrl = `https://graph.facebook.com/${settings.apiVersion || 'v20.0'}/${cleanAccountId}/promote_pages`;
+      const pagesRes = await axios.get(pagesUrl, {
+        params: { fields: 'id,name', access_token: settings.accessToken.trim(), limit: 50 },
+        timeout: 5000
+      });
+      if (pagesRes.data && Array.isArray(pagesRes.data.data)) {
+        pagesRes.data.data.forEach((p: any) => {
+          if (p.id && p.name) pageMap[p.id] = p.name;
+        });
+      }
+    } catch {
+      // Ignore if promote_pages fails due to permission scope
+    }
+
     const fields = [
       'id',
       'name',
@@ -27,6 +44,8 @@ export async function fetchMetaCampaigns(settings: ApiSettings): Promise<{
       'daily_budget',
       'lifetime_budget',
       'budget_remaining',
+      'promoted_object',
+      'adsets{name,promoted_object}',
       'insights.date_preset(today){spend,impressions,clicks,reach,frequency,cpc,cpm,ctr,actions,action_values,cost_per_action_type}'
     ].join(',');
 
@@ -43,7 +62,7 @@ export async function fetchMetaCampaigns(settings: ApiSettings): Promise<{
 
     if (response.data && Array.isArray(response.data.data)) {
       const rawList: RawMetaCampaign[] = response.data.data;
-      const normalizedList = rawList.map(raw => normalizeMetaCampaign(raw));
+      const normalizedList = rawList.map(raw => normalizeMetaCampaign(raw, pageMap));
       return { campaigns: normalizedList };
     }
 
