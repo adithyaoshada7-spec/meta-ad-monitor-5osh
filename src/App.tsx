@@ -49,13 +49,31 @@ export function App() {
         {/* Main Dashboard Body */}
         <main className="flex-1 max-w-7xl w-full mx-auto px-4 lg:px-8 py-6 space-y-6">
           
+          {/* Demo Mode / Missing Token Notification Banner */}
+          {(!settings.isLiveMode || !settings.accessToken) && !error && (
+            <div className="bg-amber-500/10 border border-amber-500/30 rounded-2xl p-4 text-amber-200 text-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-lg">
+              <div className="flex items-center gap-2.5">
+                <AlertCircle className="w-5 h-5 text-amber-400 shrink-0" />
+                <div>
+                  <strong className="font-bold text-amber-100">Showing Simulated Demo Data:</strong> Ad Account <code className="text-amber-300 font-mono">act_1397457568798633</code> requires a Meta Access Token to fetch live Facebook Graph API data.
+                </div>
+              </div>
+              <button
+                onClick={() => setIsSettingsOpen(true)}
+                className="px-3.5 py-1.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-100 border border-amber-500/40 rounded-xl font-semibold shrink-0 transition-all flex items-center gap-1.5 shadow-sm"
+              >
+                <span>Connect Live Token</span>
+              </button>
+            </div>
+          )}
+
           {/* API Error Notification (If any) */}
           {error && (
             <div className="bg-rose-500/10 border border-rose-500/30 rounded-2xl p-4 text-rose-300 text-xs flex items-center justify-between gap-3 shadow-lg">
               <div className="flex items-center gap-2.5">
                 <AlertCircle className="w-5 h-5 text-rose-400 shrink-0" />
                 <div>
-                  <strong className="font-bold text-rose-200">Meta API Notice:</strong> {error}
+                  <strong className="font-bold text-rose-200">Meta API Error:</strong> {error}
                 </div>
               </div>
               <button
