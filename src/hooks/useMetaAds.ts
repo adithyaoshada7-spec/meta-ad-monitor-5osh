@@ -9,20 +9,33 @@ import type {
 import { INITIAL_MOCK_CAMPAIGNS, jitterMockCampaigns } from '../utils/mockData';
 import { fetchMetaCampaigns } from '../services/metaApi';
 
+const envToken = (import.meta as any).env?.VITE_META_ACCESS_TOKEN || '';
+const envAccountId = (import.meta as any).env?.VITE_META_AD_ACCOUNT_ID || 'act_1397457568798633';
+
 const DEFAULT_SETTINGS: ApiSettings = {
-  accessToken: '',
-  adAccountId: 'act_1397457568798633',
+  accessToken: envToken,
+  adAccountId: envAccountId,
   apiVersion: 'v20.0',
-  isLiveMode: false,
+  isLiveMode: Boolean(envToken),
   autoRefreshInterval: 10 // default 10 seconds auto-refresh
 };
 
 export function useMetaAds() {
-  // Load settings from localStorage
+  // Load settings from localStorage with env fallbacks
   const [settings, setSettings] = useState<ApiSettings>(() => {
     try {
       const saved = localStorage.getItem('meta_dashboard_settings');
-      return saved ? JSON.parse(saved) : DEFAULT_SETTINGS;
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return {
+          ...DEFAULT_SETTINGS,
+          ...parsed,
+          accessToken: parsed.accessToken || envToken,
+          adAccountId: parsed.adAccountId || envAccountId,
+          isLiveMode: parsed.isLiveMode !== undefined ? parsed.isLiveMode : Boolean(envToken)
+        };
+      }
+      return DEFAULT_SETTINGS;
     } catch {
       return DEFAULT_SETTINGS;
     }
