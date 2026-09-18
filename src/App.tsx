@@ -112,19 +112,20 @@ export function App() {
           </div>
 
           {/* Top Metric Summary Cards */}
-          <SummaryCards summary={summary} activeFilter={statusFilter} />
+          <SummaryCards summary={summary} activeFilter={statusFilter} currency={settings.currency} />
 
           {/* Active Campaign Budget Monitor */}
-          <BudgetOverview campaigns={allCampaigns} />
+          <BudgetOverview campaigns={allCampaigns} currency={settings.currency} />
 
           {/* Recharts Analytics Section */}
-          <ChartsSection summary={summary} />
+          <ChartsSection summary={summary} currency={settings.currency} />
 
           {/* Detailed Campaign Table with Objective Badge & Dynamic Metrics */}
           <CampaignTable
             campaigns={campaigns}
             searchQuery={searchQuery}
             objectiveFilter={objectiveFilter}
+            currency={settings.currency}
             onSearchChange={setSearchQuery}
             onObjectiveFilterChange={setObjectiveFilter}
           />

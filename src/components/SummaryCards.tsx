@@ -7,20 +7,15 @@ import {
   CheckCircle2 
 } from 'lucide-react';
 import type { DashboardSummary } from '../types/meta';
+import { formatCurrency } from '../utils/currencyFormatter';
 
 interface SummaryCardsProps {
   summary: DashboardSummary;
   activeFilter: string;
+  currency?: string;
 }
 
-export const SummaryCards: React.FC<SummaryCardsProps> = ({ summary, activeFilter }) => {
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 2
-    }).format(amount);
-  };
+export const SummaryCards: React.FC<SummaryCardsProps> = ({ summary, activeFilter, currency = 'LKR' }) => {
 
   const formatNumber = (num: number) => {
     return new Intl.NumberFormat('en-US').format(Math.round(num));
@@ -43,10 +38,10 @@ export const SummaryCards: React.FC<SummaryCardsProps> = ({ summary, activeFilte
           </div>
         </div>
         <div className="text-2xl lg:text-3xl font-bold text-white tracking-tight">
-          {formatCurrency(summary.totalSpent)}
+          {formatCurrency(summary.totalSpent, currency)}
         </div>
         <div className="mt-3 flex items-center justify-between text-xs">
-          <span className="text-slate-400">Total Budget: <strong className="text-slate-200">{formatCurrency(summary.totalBudget)}</strong></span>
+          <span className="text-slate-400">Total Budget: <strong className="text-slate-200">{formatCurrency(summary.totalBudget, currency)}</strong></span>
           <span className="font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md">
             {budgetUsedPct}% Used
           </span>
@@ -118,7 +113,7 @@ export const SummaryCards: React.FC<SummaryCardsProps> = ({ summary, activeFilte
         </div>
         <div className="mt-3 flex items-center justify-between text-xs text-slate-400">
           <span>Impressions: <strong className="text-slate-200">{formatNumber(summary.totalImpressions)}</strong></span>
-          <span>CPC: <strong className="text-slate-200">{formatCurrency(summary.avgCpc)}</strong></span>
+          <span>CPC: <strong className="text-slate-200">{formatCurrency(summary.avgCpc, currency)}</strong></span>
         </div>
       </div>
 

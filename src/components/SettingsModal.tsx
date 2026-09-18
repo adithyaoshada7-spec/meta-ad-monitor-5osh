@@ -146,6 +146,21 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
           </div>
 
+          {/* Currency Display Selector */}
+          <div>
+            <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+              Dashboard Display Currency
+            </label>
+            <select
+              value={formData.currency || 'LKR'}
+              onChange={(e) => setFormData(prev => ({ ...prev, currency: e.target.value }))}
+              className="w-full bg-slate-950 border border-slate-700/80 rounded-xl px-3.5 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-indigo-500 font-semibold"
+            >
+              <option value="LKR">🇱🇰 LKR - Sri Lankan Rupee (Rs.)</option>
+              <option value="USD">🇺🇸 USD - US Dollar ($)</option>
+            </select>
+          </div>
+
           {/* Graph API Version */}
           <div>
             <label className="block text-xs font-semibold text-slate-300 mb-1.5">

@@ -13,12 +13,14 @@ import {
 } from 'recharts';
 import { TrendingUp, BarChart3 } from 'lucide-react';
 import type { DashboardSummary } from '../types/meta';
+import { formatCurrency as fmtCurrency } from '../utils/currencyFormatter';
 
 interface ChartsSectionProps {
   summary: DashboardSummary;
+  currency?: string;
 }
 
-export const ChartsSection: React.FC<ChartsSectionProps> = ({ summary }) => {
+export const ChartsSection: React.FC<ChartsSectionProps> = ({ summary, currency = 'LKR' }) => {
   
   // Data for Objective Breakdown Bar Chart
   const objectiveData = [
@@ -41,7 +43,7 @@ export const ChartsSection: React.FC<ChartsSectionProps> = ({ summary }) => {
     { hour: 'Now', spend: summary.totalSpent, results: summary.totalResults }
   ];
 
-  const formatCurrency = (val: number) => `$${val.toFixed(2)}`;
+  const formatCurrency = (val: number) => fmtCurrency(val, currency, 0);
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

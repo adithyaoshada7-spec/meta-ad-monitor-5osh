@@ -17,7 +17,9 @@ const DEFAULT_SETTINGS: ApiSettings = {
   adAccountId: envAccountId,
   apiVersion: 'v20.0',
   isLiveMode: Boolean(envToken),
-  autoRefreshInterval: 10 // default 10 seconds auto-refresh
+  autoRefreshInterval: 10, // default 10 seconds auto-refresh
+  currency: 'LKR',
+  usdToLkrRate: 300
 };
 
 export function useMetaAds() {
@@ -32,6 +34,8 @@ export function useMetaAds() {
           ...parsed,
           accessToken: parsed.accessToken || envToken,
           adAccountId: parsed.adAccountId || envAccountId,
+          currency: parsed.currency || 'LKR',
+          usdToLkrRate: parsed.usdToLkrRate || 300,
           isLiveMode: parsed.isLiveMode !== undefined ? parsed.isLiveMode : Boolean(envToken)
         };
       }

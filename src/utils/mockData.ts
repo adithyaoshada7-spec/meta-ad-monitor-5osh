@@ -7,23 +7,23 @@ export const INITIAL_MOCK_CAMPAIGNS: NormalizedCampaign[] = [
     status: 'ACTIVE',
     objective: 'OUTCOME_LEADS',
     objectiveCategory: 'LEADS',
-    dailyBudget: 45.00,
+    dailyBudget: 4500.00,
     lifetimeBudget: 0,
     budgetType: 'DAILY',
-    amountSpent: 28.40,
-    remainingBudget: 16.60,
+    amountSpent: 2840.00,
+    remainingBudget: 1660.00,
     spentPercentage: 63.1,
     impressions: 14850,
     clicks: 620,
     ctr: 4.18,
-    cpc: 0.046,
-    cpm: 1.91,
+    cpc: 4.58,
+    cpm: 191.20,
     reach: 11200,
     frequency: 1.32,
     primaryResult: {
       name: 'Leads',
       count: 42,
-      costPerResult: 0.676,
+      costPerResult: 67.62,
       unitLabel: 'Lead'
     },
     updatedAt: new Date().toISOString(),
@@ -35,24 +35,24 @@ export const INITIAL_MOCK_CAMPAIGNS: NormalizedCampaign[] = [
     status: 'ACTIVE',
     objective: 'OUTCOME_SALES',
     objectiveCategory: 'SALES',
-    dailyBudget: 120.00,
+    dailyBudget: 12000.00,
     lifetimeBudget: 0,
     budgetType: 'DAILY',
-    amountSpent: 94.50,
-    remainingBudget: 25.50,
+    amountSpent: 9450.00,
+    remainingBudget: 2550.00,
     spentPercentage: 78.75,
     impressions: 38200,
     clicks: 1420,
     ctr: 3.72,
-    cpc: 0.066,
-    cpm: 2.47,
+    cpc: 6.65,
+    cpm: 247.38,
     reach: 29500,
     frequency: 1.29,
     primaryResult: {
       name: 'Purchases',
       count: 18,
-      costPerResult: 5.25,
-      value: 684.00,
+      costPerResult: 525.00,
+      value: 68400.00,
       roas: 7.24,
       unitLabel: 'Purchase'
     },
@@ -65,23 +65,23 @@ export const INITIAL_MOCK_CAMPAIGNS: NormalizedCampaign[] = [
     status: 'ACTIVE',
     objective: 'OUTCOME_ENGAGEMENT',
     objectiveCategory: 'MESSAGES',
-    dailyBudget: 25.00,
+    dailyBudget: 2500.00,
     lifetimeBudget: 0,
     budgetType: 'DAILY',
-    amountSpent: 16.80,
-    remainingBudget: 8.20,
+    amountSpent: 1680.00,
+    remainingBudget: 820.00,
     spentPercentage: 67.2,
     impressions: 9400,
     clicks: 310,
     ctr: 3.30,
-    cpc: 0.054,
-    cpm: 1.78,
+    cpc: 5.42,
+    cpm: 178.72,
     reach: 8100,
     frequency: 1.16,
     primaryResult: {
       name: 'Messaging Convs.',
       count: 36,
-      costPerResult: 0.466,
+      costPerResult: 46.66,
       unitLabel: 'Conv.'
     },
     updatedAt: new Date().toISOString(),
@@ -93,23 +93,23 @@ export const INITIAL_MOCK_CAMPAIGNS: NormalizedCampaign[] = [
     status: 'ACTIVE',
     objective: 'OUTCOME_TRAFFIC',
     objectiveCategory: 'TRAFFIC',
-    dailyBudget: 30.00,
+    dailyBudget: 3000.00,
     lifetimeBudget: 0,
     budgetType: 'DAILY',
-    amountSpent: 21.10,
-    remainingBudget: 8.90,
+    amountSpent: 2110.00,
+    remainingBudget: 890.00,
     spentPercentage: 70.33,
     impressions: 18400,
     clicks: 890,
     ctr: 4.84,
-    cpc: 0.023,
-    cpm: 1.14,
+    cpc: 2.37,
+    cpm: 114.67,
     reach: 15600,
     frequency: 1.18,
     primaryResult: {
       name: 'Link Clicks',
       count: 890,
-      costPerResult: 0.023,
+      costPerResult: 2.37,
       unitLabel: 'Click'
     },
     updatedAt: new Date().toISOString(),
@@ -121,23 +121,23 @@ export const INITIAL_MOCK_CAMPAIGNS: NormalizedCampaign[] = [
     status: 'ACTIVE',
     objective: 'OUTCOME_AWARENESS',
     objectiveCategory: 'AWARENESS',
-    dailyBudget: 50.00,
+    dailyBudget: 5000.00,
     lifetimeBudget: 0,
     budgetType: 'DAILY',
-    amountSpent: 42.00,
-    remainingBudget: 8.00,
+    amountSpent: 4200.00,
+    remainingBudget: 800.00,
     spentPercentage: 84.0,
     impressions: 54000,
     clicks: 420,
     ctr: 0.78,
-    cpc: 0.10,
-    cpm: 0.777,
+    cpc: 10.00,
+    cpm: 77.77,
     reach: 42100,
     frequency: 1.28,
     primaryResult: {
       name: 'Reach',
       count: 42100,
-      costPerResult: 0.997,
+      costPerResult: 99.76,
       unitLabel: '1k Reach'
     },
     updatedAt: new Date().toISOString(),
@@ -150,22 +150,22 @@ export const INITIAL_MOCK_CAMPAIGNS: NormalizedCampaign[] = [
     objective: 'OUTCOME_APP_PROMOTION',
     objectiveCategory: 'APP_PROMOTION',
     dailyBudget: 0,
-    lifetimeBudget: 500.00,
+    lifetimeBudget: 50000.00,
     budgetType: 'LIFETIME',
-    amountSpent: 310.00,
-    remainingBudget: 190.00,
+    amountSpent: 31000.00,
+    remainingBudget: 19000.00,
     spentPercentage: 62.0,
     impressions: 62000,
     clicks: 2100,
     ctr: 3.38,
-    cpc: 0.147,
-    cpm: 5.00,
+    cpc: 14.76,
+    cpm: 500.00,
     reach: 48000,
     frequency: 1.29,
     primaryResult: {
       name: 'App Installs',
       count: 245,
-      costPerResult: 1.265,
+      costPerResult: 126.53,
       unitLabel: 'Install'
     },
     updatedAt: new Date().toISOString(),
@@ -181,8 +181,8 @@ export function jitterMockCampaigns(campaigns: NormalizedCampaign[]): Normalized
     // Only tick active campaigns to simulate real ad activity
     if (cmp.status !== 'ACTIVE') return cmp;
 
-    // Small random spend increase between $0.05 and $0.40 per tick
-    const deltaSpend = parseFloat((Math.random() * 0.35 + 0.05).toFixed(2));
+    // Small random spend increase in LKR (Rs. 5 - 35) per tick
+    const deltaSpend = parseFloat((Math.random() * 30 + 5).toFixed(2));
     const newSpent = parseFloat((cmp.amountSpent + deltaSpend).toFixed(2));
     
     // Impressions tick up by 30-150
@@ -199,15 +199,15 @@ export function jitterMockCampaigns(campaigns: NormalizedCampaign[]): Normalized
     if (Math.random() > 0.65) {
       newResultCount += 1;
       if (cmp.objectiveCategory === 'SALES') {
-        const saleValue = Math.floor(Math.random() * 45 + 25);
+        const saleValue = Math.floor(Math.random() * 4500 + 2500);
         newValue = (newValue || 0) + saleValue;
       }
     }
 
     const newCtr = newImp > 0 ? parseFloat(((newClicks / newImp) * 100).toFixed(2)) : cmp.ctr;
-    const newCpc = newClicks > 0 ? parseFloat((newSpent / newClicks).toFixed(3)) : cmp.cpc;
-    const newCpm = newImp > 0 ? parseFloat(((newSpent / newImp) * 1000).toFixed(3)) : cmp.cpm;
-    const newCpr = newResultCount > 0 ? parseFloat((newSpent / newResultCount).toFixed(3)) : cmp.primaryResult.costPerResult;
+    const newCpc = newClicks > 0 ? parseFloat((newSpent / newClicks).toFixed(2)) : cmp.cpc;
+    const newCpm = newImp > 0 ? parseFloat(((newSpent / newImp) * 1000).toFixed(2)) : cmp.cpm;
+    const newCpr = newResultCount > 0 ? parseFloat((newSpent / newResultCount).toFixed(2)) : cmp.primaryResult.costPerResult;
     const newRoas = newSpent > 0 && newValue ? parseFloat((newValue / newSpent).toFixed(2)) : cmp.primaryResult.roas;
 
     const totalBudget = cmp.dailyBudget || cmp.lifetimeBudget || 0;

@@ -101,4 +101,6 @@ export interface ApiSettings {
   apiVersion: string;   // e.g. v20.0
   isLiveMode: boolean;  // toggle between live Meta API and mock mode
   autoRefreshInterval: number; // in seconds (0 = disabled, 10, 30, 60, 300)
+  currency: 'LKR' | 'USD' | string; // Selected display currency
+  usdToLkrRate: number; // Conversion rate if converting USD account to LKR (e.g. 300)
 }

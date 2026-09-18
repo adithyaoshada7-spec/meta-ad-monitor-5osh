@@ -13,11 +13,13 @@ import {
   DollarSign
 } from 'lucide-react';
 import type { NormalizedCampaign, ObjectiveCategory } from '../types/meta';
+import { formatCurrency as fmtCurrency } from '../utils/currencyFormatter';
 
 interface CampaignTableProps {
   campaigns: NormalizedCampaign[];
   searchQuery: string;
   objectiveFilter: string;
+  currency?: string;
   onSearchChange: (q: string) => void;
   onObjectiveFilterChange: (obj: string) => void;
 }
@@ -26,14 +28,12 @@ export const CampaignTable: React.FC<CampaignTableProps> = ({
   campaigns,
   searchQuery,
   objectiveFilter,
+  currency = 'LKR',
   onSearchChange,
   onObjectiveFilterChange
 }) => {
 
-  const formatCurrency = (val: number) => {
-    if (val === undefined || val === null || isNaN(val)) return '$0.00';
-    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(val);
-  };
+  const formatCurrency = (val: number) => fmtCurrency(val, currency);
 
   const formatNumber = (val: number) => {
     if (val === undefined || val === null || isNaN(val)) return '0';

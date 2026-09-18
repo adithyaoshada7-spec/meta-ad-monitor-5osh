@@ -1,17 +1,17 @@
 import React from 'react';
 import { Wallet, AlertCircle, CheckCircle, Clock } from 'lucide-react';
 import type { NormalizedCampaign } from '../types/meta';
+import { formatCurrency } from '../utils/currencyFormatter';
 
 interface BudgetOverviewProps {
   campaigns: NormalizedCampaign[];
+  currency?: string;
 }
 
-export const BudgetOverview: React.FC<BudgetOverviewProps> = ({ campaigns }) => {
+export const BudgetOverview: React.FC<BudgetOverviewProps> = ({ campaigns, currency = 'LKR' }) => {
   const activeCampaigns = campaigns.filter(c => c.status === 'ACTIVE');
 
-  const formatCurrency = (val: number) => {
-    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(val);
-  };
+  const formatCurr = (val: number) => formatCurrency(val, currency);
 
   const getBudgetStatusBadge = (pct: number) => {
     if (pct >= 90) {
@@ -80,7 +80,7 @@ export const BudgetOverview: React.FC<BudgetOverviewProps> = ({ campaigns }) => 
 
                   <div className="flex items-baseline justify-between text-xs text-slate-400 mb-1.5">
                     <span>Type: <strong className="text-slate-300">{cmp.budgetType}</strong></span>
-                    <span>Budget: <strong className="text-slate-200">{formatCurrency(budgetVal)}</strong></span>
+                    <span>Budget: <strong className="text-slate-200">{formatCurr(budgetVal)}</strong></span>
                   </div>
 
                   {/* Spend Progress Bar */}
@@ -99,8 +99,8 @@ export const BudgetOverview: React.FC<BudgetOverviewProps> = ({ campaigns }) => 
                 </div>
 
                 <div className="flex items-center justify-between text-xs pt-2 border-t border-slate-800/60 text-slate-400">
-                  <span>Spent: <strong className="text-white">{formatCurrency(cmp.amountSpent)}</strong></span>
-                  <span>Rem: <strong className="text-teal-400">{formatCurrency(cmp.remainingBudget)}</strong></span>
+                  <span>Spent: <strong className="text-white">{formatCurr(cmp.amountSpent)}</strong></span>
+                  <span>Rem: <strong className="text-teal-400">{formatCurr(cmp.remainingBudget)}</strong></span>
                 </div>
               </div>
             );
